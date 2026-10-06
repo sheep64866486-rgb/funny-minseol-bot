@@ -11,8 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: 파일 가져오기
         uses: actions/checkout@v4
 
-      - name: Show message
-        run: echo "웃긴민설 자동화 테스트 성공"
+      - name: 파이썬 준비
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 필요한 프로그램 설치
+        run: |
+          pip install edge-tts pillow
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+
+      - name: 웃긴민설 영상 만들기
+        run: python bot.py
+
+      - name: 만든 영상 저장하기
+        uses: actions/upload-artifact@v4
+        with:
+          name: funny-minseol-video
+          path: output/funny_minseol.mp4
