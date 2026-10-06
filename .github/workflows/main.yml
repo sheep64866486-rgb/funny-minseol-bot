@@ -21,7 +21,7 @@ jobs:
 
       - name: 필요한 프로그램 설치
         run: |
-          pip install edge-tts pillow
+          pip install edge-tts pillow google-api-python-client google-auth
           sudo apt-get update
           sudo apt-get install -y ffmpeg fonts-noto-cjk
 
@@ -33,3 +33,11 @@ jobs:
         with:
           name: funny-minseol-video
           path: output/funny_minseol.mp4
+
+      - name: 유튜브에 자동 업로드
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          YOUTUBE_PRIVACY_STATUS: public
+        run: python upload_youtube.py
