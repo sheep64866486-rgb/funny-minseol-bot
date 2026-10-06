@@ -7,7 +7,7 @@ on:
     - cron: "0 11 * * *"
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   run-bot:
@@ -36,14 +36,6 @@ jobs:
         with:
           name: funny-minseol-video
           path: output/funny_minseol.mp4
-
-      - name: 최신 영상을 공개 링크로 갱신
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f output/funny_minseol.mp4
-          git commit -m "Update latest funny-minseol video" || true
-          git push
 
       - name: 웃긴민설 YouTube에 직접 업로드
         env:
