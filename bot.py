@@ -31,7 +31,7 @@ def make_image():
     img = Image.new("RGB", (1080, 1920), "black")
     draw = ImageDraw.Draw(img)
 
-    font_path = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+    font_path = "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
     font = ImageFont.truetype(font_path, 70)
 
     words = text.split()
@@ -41,7 +41,8 @@ def make_image():
     for word in words:
         test = (line + " " + word).strip()
         if len(test) > 13:
-            lines.append(line)
+            if line:
+                lines.append(line)
             line = word
         else:
             line = test
