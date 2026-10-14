@@ -2,9 +2,7 @@ name: Funny Minseol Bot
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 3 * * *"
-    - cron: "0 11 * * *"
+  # Automatic schedule paused at user request on 2026-10-14.
 
 permissions:
   contents: read
